@@ -8,12 +8,11 @@ class PhotoRepository {
 
   Future<List<PhotoModal>> getPhotos() async {
     Response response = await get(Uri.parse(photoUrl),) ;
-        if (response.statusCode == 200) {
-      final List result = jsonDecode(response.body)['data'];
-      return result.map((e) => PhotoModal.fromJson(e)).toList();
-    } else {
-      throw Exception(response.reasonPhrase);
-    }
-
+    if (response.statusCode == 200) {
+  List result = jsonDecode(response.body);
+  return List<PhotoModal>.from(result.map((e) => PhotoModal.fromJson(e),).toList());
+}else{
+  throw Exception(response.reasonPhrase);
+}
   }
 }

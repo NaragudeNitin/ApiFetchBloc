@@ -4,6 +4,8 @@ import 'package:photo_api_bloc/cubit/photo_cubit.dart';
 import 'package:photo_api_bloc/home_screen.dart';
 import 'package:photo_api_bloc/repository/photo_repository.dart';
 
+import 'cubit/photo_event.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -21,7 +23,7 @@ class MyApp extends StatelessWidget {
       home: MultiBlocProvider(
         providers: [
           BlocProvider(
-            create: (context) => PhotoCubit(PhotoRepository()),
+            create: (context) => PhotoCubit(PhotoRepository())..add(LoadPhotoEvent()),
           ),
           
         ],
